@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request
+from flask import Flask,render_template,request,redirect,url_for
 
 app=Flask(__name__)
 
@@ -14,9 +14,21 @@ def about():
 def submit():
     if request.method == 'POST':
         name = request.form['name']
+        age= request.form['age']
         # Process the user input as needed
-        return render_template('result.html', name=name)
+        return redirect(url_for('submit_age', age=age))
     return render_template('submit.html')
+
+@app.route('/submit_age/<int:age>', methods=['GET'])
+def submit_age(age):
+    if age>23:
+        return "FOSSIL";
+    elif age>=18:
+        return "YOUR LIFE IS DONE";
+    elif age>16:
+        return "LAST CHANCE BRO";
+    else:
+        return "Live your life to the fullest";
 
 if __name__ == '__main__':
     app.run(debug=True)
