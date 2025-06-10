@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>submit form</title>
+    </head>
+
+    <body>
+        <h1>Submit Form</h1>
+        <form method="POST" action="/predict">
+            <label for="DMC">DMC:</label>
+            <input type="text" id="DMC" name="DMC" required>
+            <label for="DC">DC:</label>
+            <input type="text" id="DC" name="DC" required>
+            <label for="ISI">ISI:</label>
+            <input type="text" id="ISI" name="ISI" required>
+            <label for="BUI">BUI:</label>
+            <input type="text" id="BUI" name="BUI" required>
+            <input type="submit" value="Submit">
+        </form>
+
+        <h2>Prediction Result</h2>
+        {% if prediction %}
+            <p>The predicted class is: {{ prediction }}</p>
+        {% else %}
+            <p>No prediction made yet.</p>
+        {% endif %}
+    </body>
+</html>
